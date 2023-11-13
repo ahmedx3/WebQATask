@@ -65,7 +65,7 @@ describe('Contact Us Test Cases', function () {
     contactUs
       .navigate()
       .setValue('@subjectHeading', 'Customer service')
-      .setValue('@emailAddress', 'test')
+      .setValue('@emailAddress', 'test@test.com')
       .setValue('@orderReference', 'abc')
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
