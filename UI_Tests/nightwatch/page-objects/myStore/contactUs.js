@@ -21,7 +21,7 @@ module.exports = {
       selector: '#submitMessage',
     },
     AttachFile: {
-      selector: '#fileUpload',
+      selector: 'input#fileUpload',
     },
     alert: {
       selector: '//*[contains(@class, "alert")]',
