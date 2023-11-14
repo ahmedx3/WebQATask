@@ -26,8 +26,10 @@ jobs:
       - browser-tools/install-browser-tools
       - node/install-packages
       - run:
-        command: cd UI_Tests
-          npm run test
+          name: Run UI tests
+          command: |
+            cd UI_Tests
+            npm run test
 
 workflows:
   Test-My-App:
