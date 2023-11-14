@@ -16,13 +16,13 @@ describe('Home Page Search', function () {
     resultsPage.expect.element('@searchLabel').text.to.contain('DRESS');
   });
 
-  // it('should contain dress in all search items results', function (browser) {
-  //   let searchItem = 'dress';
-  //   homePage.setValue('@searchBar', searchItem);
-  //   homePage.submit();
+  it('should contain dress in all search items results', function (browser) {
+    let searchItem = 'dress';
+    homePage.setValue('@searchBar', searchItem);
+    homePage.submit();
 
-  //   const resultsPage = browser.page.myStore.searchResults();
+    const resultsPage = browser.page.myStore.searchResults();
 
-  //   resultsPage.listContainsText(searchItem);
-  // });
+    resultsPage.listContainsText(searchItem);
+  });
 });

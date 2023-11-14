@@ -20,7 +20,7 @@ jobs:
             npm test
       - store_test_results:
           app-dir: API_Tests
-          path: ./coverage
+          path: ./API_Tests/coverage
   Test-UI:
     docker:
       - image: cimg/node:lts-browsers
@@ -42,6 +42,4 @@ workflows:
   Test-My-App:
     jobs:
       - Test-UI
-      - Test-API:
-          requires:
-            - Test-UI
+      - Test-API
