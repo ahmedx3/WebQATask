@@ -1,5 +1,4 @@
 version: 2.1
-
 jobs:
   Test-API:
     docker:
@@ -13,3 +12,8 @@ jobs:
             cd API_Tests
             npm install
             npm test
+
+workflows:
+  Test-My-App:
+    jobs:
+      - Test-API
