@@ -12,6 +12,7 @@ jobs:
             cd API_Tests
             npm install
             npm run dev
+            background: true
       - run:
           name: Run API tests
           command: |
