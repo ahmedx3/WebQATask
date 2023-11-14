@@ -16,7 +16,7 @@ describe('Home Page Search', function () {
     resultsPage.expect.element('@searchLabel').text.to.contain('DRESS');
   });
 
-  it('should contain dress in all search items', function (browser) {
+  it('should contain dress in all search items results', function (browser) {
     let searchItem = 'dress';
     homePage.setValue('@searchBar', searchItem);
     homePage.submit();
