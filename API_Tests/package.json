@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "nodemon ./node_modules/mock-user-auth/bin/www.js",
+    "dev": "nodemon ./node_modules/mock-user-auth/bin/www.js 3000",
     "test": "jest"
   },
   "devDependencies": {

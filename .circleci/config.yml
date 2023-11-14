@@ -7,11 +7,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run API tests
+          name: Start server
           command: |
             cd API_Tests
             npm install
             npm run dev
+      - run:
+          name: Run API tests
+          command: |
+            cd API_Tests
             npm test
 
 workflows:
