@@ -13,8 +13,8 @@ jobs:
             npm install
             npm run dev &
             npm test
-          - store_test_results:
-            path: API_Tests
+    - store_test_results:
+      path: API_Tests
 
 workflows:
   Test-My-App:
