@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.7
-  browser-tools: circleci/browser-tools@1.4.4
+  node: circleci/node@4.9
+  browser-tools: circleci/browser-tools@1.4.6
 
 jobs:
   # Test-API:
