@@ -24,7 +24,8 @@ jobs:
     steps:
       - checkout
       - browser-tools/install-browser-tools
-      - node/install-packages
+      - node/install-packages:
+        app-dir: UI_Tests
       - run:
           name: Run UI tests
           command: |
