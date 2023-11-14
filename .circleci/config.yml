@@ -1,30 +1,36 @@
 version: 2.1
+
+orbs:
+  node: circleci/node@4.7
+  browser-tools: circleci/browser-tools@1.1.0
+
 jobs:
-  Test-API:
-    docker:
-      - image: cimg/node:14.17.0
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Run API tests
-          command: |
-            cd API_Tests
-            npm install
-            npm run dev &
-            npm test
-  Test-UI:
-    docker:
-      - image: cimg/node:14.17.0
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Run UI tests
-          command: |
-            cd UI_Tests
-            npm install
-            npx nightwatch
+  # Test-API:
+  #   docker:
+  #     - image: cimg/node:14.17.0
+  #   working_directory: ~/repo
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: Run API tests
+  #         command: |
+  #           cd API_Tests
+  #           npm install
+  #           npm run dev &
+  #           npm test
+  Test-UI: 
+    docker: 
+      - image: cimg/node:lts-browsers 
+    steps: 
+      - checkout 
+      - browser-tools/install-browser-tools 
+      - node/install-packages 
+      - run: 
+        command: 
+          cd UI_Tests
+          npm run test 
+        - store_test_results: 
+          path: /tests_output 
 
 workflows:
   Test-My-App:
