@@ -29,8 +29,8 @@ jobs:
         command: 
           cd UI_Tests
           npm run test 
-        - store_test_results: 
-          path: /tests_output 
+          store_test_results: 
+            path: /tests_output 
 
 workflows:
   Test-My-App:
