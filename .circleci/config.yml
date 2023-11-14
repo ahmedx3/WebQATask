@@ -42,4 +42,6 @@ workflows:
   Test-My-App:
     jobs:
       - Test-UI
-      - Test-API
+      - Test-API:
+          requires:
+            - Test-UI
