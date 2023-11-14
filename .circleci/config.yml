@@ -7,12 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Start server
+          name: Run API tests
           command: |
             cd API_Tests
             npm install
             npm run dev &
             npm test
+      - store_test_results:
+        path: API_Tests
 
 workflows:
   Test-My-App:
