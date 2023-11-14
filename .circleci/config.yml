@@ -5,19 +5,22 @@ orbs:
   browser-tools: circleci/browser-tools@1.4.6
 
 jobs:
-  # Test-API:
-  #   docker:
-  #     - image: cimg/node:14.17.0
-  #   working_directory: ~/repo
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Run API tests
-  #         command: |
-  #           cd API_Tests
-  #           npm install
-  #           npm run dev &
-  #           npm test
+  Test-API:
+    docker:
+      - image: cimg/node:14.17.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Run API tests
+          command: |
+            cd API_Tests
+            npm install
+            npm run dev &
+            npm test
+      - store_test_results:
+          app-dir: API_Tests
+          path: /
   Test-UI:
     docker:
       - image: cimg/node:lts-browsers
@@ -32,9 +35,11 @@ jobs:
             cd UI_Tests
             npm run test
       - store_test_results:
+          app-dir: UI_Tests
           path: /tests_output
 
 workflows:
   Test-My-App:
     jobs:
       - Test-UI
+      - Test-API
