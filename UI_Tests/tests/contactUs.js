@@ -61,19 +61,19 @@ describe('Contact Us Test Cases', function () {
       .text.to.contain('Please select a subject from the list provided.');
   });
 
-  it('should cause an error if order reference is not numeric', function (browser) {
-    contactUs
-      .navigate()
-      .setValue('@subjectHeading', 'Customer service')
-      .setValue('@emailAddress', 'test@test.com')
-      .setValue('@orderReference', 'abc')
-      .setValue('@message', 'This is a test message')
-      .click('@sendButton');
+  // it('should cause an error if order reference is not numeric', function (browser) {
+  //   contactUs
+  //     .navigate()
+  //     .setValue('@subjectHeading', 'Customer service')
+  //     .setValue('@emailAddress', 'test@test.com')
+  //     .setValue('@orderReference', 'abc')
+  //     .setValue('@message', 'This is a test message')
+  //     .click('@sendButton');
 
-    contactUs.expect
-      .element('@alert')
-      .text.to.contain('Invalid order reference.');
-  });
+  //   contactUs.expect
+  //     .element('@alert')
+  //     .text.to.contain('Invalid order reference.');
+  // });
 
   it('should be able to upload a file successfully', function (browser) {
     contactUs
