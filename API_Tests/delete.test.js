@@ -1,9 +1,9 @@
 const request = require('supertest');
 
 describe('Delete User', () => {
-  let token;
+  it('Should delete a user successfully with valid credentials', async () => {
+    let token;
 
-  beforeAll(async () => {
     await request('http://localhost:3000').post('/api/v1/users').send({
       name: 'Delete Test1',
       email: 'delete1@test.com',
@@ -19,9 +19,7 @@ describe('Delete User', () => {
       .then((res) => {
         token = res.body.token;
       });
-  });
 
-  it('Should delete a user successfully with valid credentials', async () => {
     const res = await request('http://localhost:3000')
       .delete('/api/v1/users')
       .set('authorization', token);
