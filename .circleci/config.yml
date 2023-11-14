@@ -20,7 +20,7 @@ jobs:
             npm test
       - store_test_results:
           app-dir: API_Tests
-          path: /
+          path: ./
   Test-UI:
     docker:
       - image: cimg/node:lts-browsers
@@ -36,7 +36,7 @@ jobs:
             npm run test
       - store_test_results:
           app-dir: UI_Tests
-          path: /tests_output
+          path: ./tests_output
 
 workflows:
   Test-My-App:
