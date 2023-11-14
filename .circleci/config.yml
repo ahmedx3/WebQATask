@@ -36,7 +36,7 @@ jobs:
             npm run test
       - store_test_results:
           app-dir: UI_Tests
-          path: ./tests_output
+          path: ./UI_Tests/tests_output
 
 workflows:
   Test-My-App:

@@ -55,6 +55,10 @@ module.exports = {
 
       webdriver: {
         start_process: true,
+        keep_alive: {
+          enabled: true,
+          keepAliveMsecs: 3000,
+        },
         server_path: '',
       },
     },
