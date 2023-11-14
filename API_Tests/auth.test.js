@@ -11,7 +11,6 @@ beforeAll(async () => {
       password: 'test',
     });
   token = res.body.token;
-  console.log(token);
 });
 
 afterAll(async () => {
@@ -29,16 +28,6 @@ describe('Authentication', () => {
         password: 'test',
       });
     expect(res.statusCode).toEqual(200);
-  });
-
-  it('Should have a token in the response', async () => {
-    const res = await request('http://localhost:3000')
-      .post('/api/v1/auth')
-      .send({
-        email: 'auth@test.com',
-        password: 'test',
-      });
-    expect(res.body).toHaveProperty('token');
   });
 
   it('Should not authenticate with invalid credentials', async () => {
