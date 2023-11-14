@@ -1,34 +1,26 @@
 const request = require('supertest');
 
-let token;
+describe('Get User', () => {
+  let token;
 
-beforeAll(async () => {
-  const res = await request('http://localhost:3000')
-    .post('/api/v1/users')
-    .send({
+  beforeAll(async () => {
+    await request('http://localhost:3000').post('/api/v1/users').send({
       name: 'Get Test',
       email: 'get@test.com',
       password: 'test',
     });
 
-  await request('http://localhost:3000')
-    .post('/api/v1/auth')
-    .send({
-      email: 'get@test.com',
-      password: 'test',
-    })
-    .then((res) => {
-      token = res.body.token;
-    });
-});
-
-afterAll(async () => {
-  await request('http://localhost:3000').delete('/api/v1/all-users').send({
-    key_admin: 'keyadmin123',
+    await request('http://localhost:3000')
+      .post('/api/v1/auth')
+      .send({
+        email: 'get@test.com',
+        password: 'test',
+      })
+      .then((res) => {
+        token = res.body.token;
+      });
   });
-});
 
-describe('Get User', () => {
   it('Should get a user successfully with valid credentials', async () => {
     const res = await request('http://localhost:3000')
       .get('/api/v1/users')

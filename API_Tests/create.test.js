@@ -1,26 +1,20 @@
 const request = require('supertest');
 
-beforeAll(async () => {
-  await request('http://localhost:3000').post('/api/v1/users').send({
-    name: 'Existing User',
-    email: 'existinguser@test.com',
-    password: 'test',
-  });
-});
-
-afterAll(async () => {
-  await request('http://localhost:3000').delete('/api/v1/all-users').send({
-    key_admin: 'keyadmin123',
-  });
-});
-
 describe('Create User', () => {
+  beforeAll(async () => {
+    await request('http://localhost:3000').post('/api/v1/users').send({
+      name: 'Existing User',
+      email: 'existinguser@test.com',
+      password: 'test',
+    });
+  });
+
   it('Should create a user successfully with valid credentials', async () => {
     const res = await request('http://localhost:3000')
       .post('/api/v1/users')
       .send({
-        name: 'User Test1',
-        email: 'test@test.com',
+        name: 'User Test Create',
+        email: 'create@test.com',
         password: 'test',
       });
     expect(res.statusCode).toEqual(200);
