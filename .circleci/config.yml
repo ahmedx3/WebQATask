@@ -13,10 +13,23 @@ jobs:
             npm install
             npm run dev &
             npm test
-    - store_test_results:
-      path: API_Tests
+  Test-UI:
+    docker:
+      - image: cimg/node:14.17.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Run UI tests
+          command: |
+            cd UI_Tests
+            npm install
+            npx nightwatch
 
 workflows:
   Test-My-App:
     jobs:
+      - Test-UI
       - Test-API
+        requires:
+          - Test-UI
