@@ -39,5 +39,5 @@ workflows:
     jobs:
       - Test-UI
       - Test-API
-        requires:
-          - Test-UI
+          requires:
+            - Test-UI
