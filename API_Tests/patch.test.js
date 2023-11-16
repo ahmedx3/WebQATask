@@ -1,4 +1,6 @@
+import 'regenerator-runtime/runtime';
 const request = require('supertest');
+import app from 'mock-user-auth/app';
 
 describe('Patch User', () => {
   let token1;
@@ -8,15 +10,13 @@ describe('Patch User', () => {
   let oldPassword;
 
   beforeAll(async () => {
-    const res = await request('http://localhost:3000')
-      .post('/api/v1/users')
-      .send({
-        name: 'Patch Test1',
-        email: 'patch1@test.com',
-        password: 'test',
-      });
+    const res = await request(app).post('/api/v1/users').send({
+      name: 'Patch Test1',
+      email: 'patch1@test.com',
+      password: 'test',
+    });
 
-    await request('http://localhost:3000')
+    await request(app)
       .post('/api/v1/auth')
       .send({
         email: 'patch1@test.com',
@@ -26,13 +26,13 @@ describe('Patch User', () => {
         token1 = res.body.token;
       });
 
-    await request('http://localhost:3000').post('/api/v1/users').send({
+    await request(app).post('/api/v1/users').send({
       name: 'Patch Test2',
       email: 'patch2@test.com',
       password: 'test',
     });
 
-    await request('http://localhost:3000')
+    await request(app)
       .post('/api/v1/auth')
       .send({
         email: 'patch2@test.com',
@@ -42,7 +42,7 @@ describe('Patch User', () => {
         token2 = res.body.token;
       });
 
-    await request('http://localhost:3000')
+    await request(app)
       .get('/api/v1/users')
       .set('authorization', token1)
       .then((res) => {
@@ -53,7 +53,7 @@ describe('Patch User', () => {
   });
 
   it('Should patch a user successfully with valid credentials', async () => {
-    const res = await request('http://localhost:3000')
+    const res = await request(app)
       .patch('/api/v1/users')
       .set('authorization', token1)
       .send({
@@ -69,7 +69,7 @@ describe('Patch User', () => {
   });
 
   it('Should not patch a user with invalid credentials', async () => {
-    const res = await request('http://localhost:3000')
+    const res = await request(app)
       .patch('/api/v1/users')
       .set('authorization', token2)
       .send({
@@ -81,7 +81,7 @@ describe('Patch User', () => {
   });
 
   it('Should not patch a user without a token', async () => {
-    const res = await request('http://localhost:3000')
+    const res = await request(app)
       .patch('/api/v1/users')
       .set('authorization', '')
       .send({

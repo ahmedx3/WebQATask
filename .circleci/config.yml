@@ -16,11 +16,7 @@ jobs:
           command: |
             cd API_Tests
             npm install
-            npm run dev &
             npm test
-      - store_test_results:
-          app-dir: API_Tests
-          path: ./API_Tests/coverage
   Test-UI:
     docker:
       - image: cimg/node:lts-browsers
@@ -43,3 +39,5 @@ workflows:
     jobs:
       - Test-UI
       - Test-API
+        requires:
+          - Test-UI

@@ -1,16 +1,18 @@
+import 'regenerator-runtime/runtime';
 const request = require('supertest');
+import app from 'mock-user-auth/app';
 
 describe('Delete User', () => {
-  it('Should delete a user successfully with valid credentials', async () => {
-    let token;
+  let token;
 
-    await request('http://localhost:3000').post('/api/v1/users').send({
+  beforeAll(async () => {
+    await request(app).post('/api/v1/users').send({
       name: 'Delete Test1',
       email: 'delete1@test.com',
       password: 'test',
     });
 
-    await request('http://localhost:3000')
+    await request(app)
       .post('/api/v1/auth')
       .send({
         email: 'delete1@test.com',
@@ -19,16 +21,18 @@ describe('Delete User', () => {
       .then((res) => {
         token = res.body.token;
       });
-
-    const res = await request('http://localhost:3000')
+  });
+  it('Should delete a user successfully with valid credentials', async () => {
+    const res = await request(app)
       .delete('/api/v1/users')
       .set('authorization', token);
+    console.log(res.body);
     expect(res.statusCode).toEqual(200);
     expect(res.body.message).toEqual('User deleted with success!');
   });
 
   it('Should not delete a user without a token', async () => {
-    const res = await request('http://localhost:3000')
+    const res = await request(app)
       .delete('/api/v1/users')
       .set('authorization', '');
     expect(res.statusCode).toEqual(403);
