@@ -14,9 +14,10 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.verify
-      .element('@alert')
-      .text.to.contain('Your message has been successfully sent to our team.');
+    contactUs.verify.textContains(
+      '@alert',
+      'Your message has been successfully sent to our team.'
+    );
   });
 
   it('should cause an error if email is invalid', function (browser) {
@@ -28,9 +29,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.verify
-      .element('@alert')
-      .text.to.contain('Invalid email address.');
+    contactUs.verify.textContains('@alert', 'Invalid email address.');
   });
 
   it('should cause an error if message is blank', function (browser) {
@@ -42,9 +41,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', '')
       .click('@sendButton');
 
-    contactUs.verify
-      .element('@alert')
-      .text.to.contain('The message cannot be blank.');
+    contactUs.verify.textContains('@alert', 'The message cannot be blank.');
   });
 
   it('should cause an error if subject heading is not selected', function (browser) {
@@ -56,9 +53,10 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.verify
-      .element('@alert')
-      .text.to.contain('Please select a subject from the list provided.');
+    contactUs.verify.textContains(
+      '@alert',
+      'Please select a subject from the list provided.'
+    );
   });
 
   it('should cause an error if order reference is not numeric', function (browser) {
@@ -70,9 +68,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.verify
-      .element('@alert')
-      .text.to.contain('Invalid order reference.');
+    contactUs.verify.textContains('@alert', 'Invalid order reference.');
   });
 
   it('should be able to upload a file successfully', function (browser) {
@@ -85,8 +81,9 @@ describe('Contact Us Test Cases', function () {
       .setValue('@AttachFile', require('path').resolve(__dirname + '/test.txt'))
       .click('@sendButton');
 
-    contactUs.verify
-      .element('@alert')
-      .text.to.contain('Your message has been successfully sent to our team.');
+    contactUs.verify.textContains(
+      '@alert',
+      'Your message has been successfully sent to our team.'
+    );
   });
 });
