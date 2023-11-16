@@ -14,7 +14,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.expect
+    contactUs.verify
       .element('@alert')
       .text.to.contain('Your message has been successfully sent to our team.');
   });
@@ -28,7 +28,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.expect
+    contactUs.verify
       .element('@alert')
       .text.to.contain('Invalid email address.');
   });
@@ -42,7 +42,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', '')
       .click('@sendButton');
 
-    contactUs.expect
+    contactUs.verify
       .element('@alert')
       .text.to.contain('The message cannot be blank.');
   });
@@ -56,7 +56,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.expect
+    contactUs.verify
       .element('@alert')
       .text.to.contain('Please select a subject from the list provided.');
   });
@@ -70,7 +70,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@message', 'This is a test message')
       .click('@sendButton');
 
-    contactUs.expect
+    contactUs.verify
       .element('@alert')
       .text.to.contain('Invalid order reference.');
   });
@@ -85,7 +85,7 @@ describe('Contact Us Test Cases', function () {
       .setValue('@AttachFile', require('path').resolve(__dirname + '/test.txt'))
       .click('@sendButton');
 
-    contactUs.expect
+    contactUs.verify
       .element('@alert')
       .text.to.contain('Your message has been successfully sent to our team.');
   });

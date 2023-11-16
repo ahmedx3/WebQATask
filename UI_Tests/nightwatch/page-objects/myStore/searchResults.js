@@ -8,7 +8,7 @@ resultsCommands = {
         elements.forEach((element) => {
           this.api.elementIdText(Object.values(element)[0], (res) => {
             // Verify if the item contains the text
-            this.assert.ok(
+            this.verify.ok(
               res.value.toLowerCase().includes(text.toLowerCase()),
               `Found ${res.value} when expecting ${text} to be in the results`
             );

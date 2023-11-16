@@ -11,9 +11,9 @@ describe('Home Page Search', function () {
 
     const resultsPage = browser.page.myStore.searchResults();
 
-    resultsPage.expect.element('@results').to.be.present;
+    resultsPage.verify.element('@results').to.be.present;
 
-    resultsPage.expect.element('@searchLabel').text.to.contain('DRESS');
+    resultsPage.verify.element('@searchLabel').text.to.contain('DRESS');
   });
 
   it('should contain dress in all search items results', function (browser) {
